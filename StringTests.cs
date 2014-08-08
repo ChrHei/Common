@@ -139,6 +139,9 @@ och då måste jag ju fixa det"
 
         }
 
+        /// <summary>
+        /// Added comment #2
+        /// </summary>
         public void GitTest_2()
         {
 
