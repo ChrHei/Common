@@ -114,7 +114,7 @@ och då måste jag ju fixa det"
         }
 
         /// <summary>
-        /// Test a url pattern and removes trailing numbers. Used by cache 
+        /// Test a url pattern and removes trailing numbers. Used by client cache-prevent
         /// url rewriter written by Tibor
         /// </summary>
         [TestMethod]
