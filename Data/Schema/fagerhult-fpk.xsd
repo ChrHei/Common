@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:fpk="http://www.fagerhult.se/fpk" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.fagerhult.se/fpk" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="FpkExport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="MarknadLista">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Marknad">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Namn" type="xs:string" />
+                  </xs:sequence>
+                  <xs:attribute name="Id" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SortimentLista">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Sortiment">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Namn" type="xs:string" />
+                    <xs:element name="Beskrivning" type="xs:string" />
+                    <xs:element name="SortimentKopplingar">
+                      <xs:complexType>
+                        <xs:sequence minOccurs="0">
+                          <xs:element name="SortimentKoppling" type="xs:string" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Katalogkopplingar">
+                      <xs:complexType>
+                        <xs:sequence minOccurs="0">
+                          <xs:element name="Katalogkoppling" type="xs:string" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="Egenskap">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Rubrik" type="xs:string" />
+                          <xs:element name="Varde" type="xs:string" />
+                        </xs:sequence>
+                        <xs:attribute name="Typ" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="Id" type="xs:string" use="required" />
+                  <xs:attribute name="SprakId" type="xs:unsignedShort" use="required" />
+                  <xs:attribute name="WebProduktNr" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="marknad" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="KatalogLista">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Katalog">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Namn" type="xs:string" />
+                    <xs:element name="Beskrivning" type="xs:string" />
+                  </xs:sequence>
+                  <xs:attribute name="Id" type="xs:string" use="required" />
+                  <xs:attribute name="SprakId" type="xs:unsignedShort" use="required" />
+                  <xs:attribute name="WebKatalogNr" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SerieLista">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Serie">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Namn" type="xs:string" />
+                    <xs:element name="Beskrivning" type="xs:string" />
+                    <xs:element name="EgenskapLista">
+                      <xs:complexType>
+                        <xs:sequence minOccurs="0">
+                          <xs:element name="Egenskap">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Rubrik" type="xs:string" />
+                                <xs:element name="Varde" type="xs:string" />
+                              </xs:sequence>
+                              <xs:attribute name="Typ" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="SortimentKopplingar">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="SortimentKoppling" type="xs:string" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="MarknadKopplingar">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="MarknadKoppling" type="xs:string" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="DokumentLista">
+                      <xs:complexType>
+                        <xs:sequence minOccurs="0">
+                          <xs:element maxOccurs="unbounded" name="Dokument">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Namn" type="xs:string" />
+                                <xs:element name="Beskrivning" type="xs:string" />
+                                <xs:element name="URI" type="xs:string" />
+                              </xs:sequence>
+                              <xs:attribute name="Typ" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="Id" type="xs:string" use="required" />
+                  <xs:attribute name="SprakId" type="xs:unsignedShort" use="required" />
+                  <xs:attribute name="WebSerieId" type="xs:unsignedShort" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="marknad" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ProduktLista">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Produkt">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="SerieKoppling" type="xs:string" />
+                    <xs:element name="Namn" type="xs:string" />
+                    <xs:element name="EgenskapLista">
+                      <xs:complexType>
+                        <xs:sequence minOccurs="0">
+                          <xs:element maxOccurs="unbounded" name="Egenskap">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Rubrik" type="xs:string" />
+                                <xs:element name="Varde" type="xs:string" />
+                              </xs:sequence>
+                              <xs:attribute name="Typ" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="DokumentLista">
+                      <xs:complexType>
+                        <xs:sequence minOccurs="0">
+                          <xs:element maxOccurs="unbounded" name="Dokument">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Namn" type="xs:string" />
+                                <xs:element name="Beskrivning" type="xs:string" />
+                                <xs:element name="URI" type="xs:string" />
+                              </xs:sequence>
+                              <xs:attribute name="Typ" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="SokordTypKopplingar">
+                      <xs:complexType>
+                        <xs:sequence minOccurs="0">
+                          <xs:element maxOccurs="unbounded" name="SokordTypKoppling" type="xs:string" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="SymbolbildKopplingar">
+                      <xs:complexType>
+                        <xs:sequence minOccurs="0">
+                          <xs:element maxOccurs="unbounded" name="SymbolbildKoppling" type="xs:string" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="Id" type="xs:string" use="required" />
+                  <xs:attribute name="SprakId" type="xs:unsignedShort" use="required" />
+                  <xs:attribute name="WebProdId" type="xs:unsignedShort" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="marknad" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ArtikelLista">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Artikel">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="ProduktKoppling" type="xs:string" />
+                    <xs:element name="Bestnr" type="xs:string" />
+                    <xs:element name="EgenskapLista">
+                      <xs:complexType>
+                        <xs:sequence minOccurs="0">
+                          <xs:element maxOccurs="unbounded" name="Egenskap">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Rubrik" type="xs:string" />
+                                <xs:element name="Varde" type="xs:string" />
+                                <xs:element name="ListSortNr" type="xs:unsignedByte" />
+                                <xs:element name="SortNr" type="xs:unsignedByte" />
+                              </xs:sequence>
+                              <xs:attribute name="Typ" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="TillbehorsKopplingar">
+                      <xs:complexType>
+                        <xs:sequence minOccurs="0">
+                          <xs:element maxOccurs="unbounded" name="TillbehorsKoppling" type="xs:string" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="Id" type="xs:string" use="required" />
+                  <xs:attribute name="SprakId" type="xs:unsignedShort" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="marknad" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SprakLista">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Sprak">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Namn" type="xs:string" />
+                    <xs:element name="SprakGuid" type="xs:string" />
+                  </xs:sequence>
+                  <xs:attribute name="Id" type="xs:unsignedShort" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SokordGrupperLista">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="SokOrdGrupp">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Namn" type="xs:string" />
+                  </xs:sequence>
+                  <xs:attribute name="SprakId" type="xs:unsignedShort" use="required" />
+                  <xs:attribute name="SokOrdGruppTyp" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SokordLista">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="SokOrd">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Namn" type="xs:string" />
+                  </xs:sequence>
+                  <xs:attribute name="SprakId" type="xs:unsignedShort" use="required" />
+                  <xs:attribute name="SokOrdTyp" type="xs:string" use="required" />
+                  <xs:attribute name="SokOrdGruppId" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SymbolbildLista">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Symbolbild">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Namn" type="xs:string" />
+                    <xs:element name="AltText" type="xs:string" />
+                    <xs:element name="HiResURI" type="xs:string" />
+                    <xs:element name="LoResURI" type="xs:string" />
+                  </xs:sequence>
+                  <xs:attribute name="Id" type="xs:string" use="required" />
+                  <xs:attribute name="sortNr" type="xs:unsignedShort" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="Date" type="xs:unsignedLong" use="required" />
+      <xs:attribute name="Sortiment" type="xs:string" use="required" />
+      <xs:attribute name="Marknad" type="xs:string" use="required" />
+      <xs:attribute name="UppdeladIMarknader" type="xs:string" use="required" />
+      <xs:attribute name="Runtime" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
