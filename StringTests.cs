@@ -131,6 +131,16 @@ och då måste jag ju fixa det"
 
         }
 
+        [TestMethod]
+        [TestCategory("String tests")]
+        public void TestCharArray()
+        {
+            char[] first = new char[] { '\r', '\n' };
+            char[] second = new char[] { '\x0d', '\x0a' };
+
+            Assert.AreEqual(first[0], second[0]);
+            Assert.AreEqual(first[1], second[1]);
+        }
         /// <summary>
         /// Added comment #1
         /// </summary>
