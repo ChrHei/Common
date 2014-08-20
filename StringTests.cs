@@ -131,6 +131,29 @@ och då måste jag ju fixa det"
 
         }
 
+        [TestMethod]
+        [TestCategory("IndustriALL")]
+        public void TestTimeZone()
+        {
+            // set value to convert
+            string pageTimeZone = "Central Europe Standard Time";
+            
+            // create a time zone info object
+            TimeZoneInfo ti = string.IsNullOrWhiteSpace(pageTimeZone) ? null : TimeZoneInfo.FindSystemTimeZoneById(pageTimeZone);
+            
+            // get current local time
+            DateTimeOffset localTime = TimeZoneInfo.ConvertTime(DateTimeOffset.UtcNow, ti);
+
+            // get timezone offset for local time (including daylight saving time)
+            string currentUtcOffset = string.IsNullOrEmpty(pageTimeZone) ? "" : localTime.Offset.ToString(@"\+hhmm");
+
+            TestContext.WriteLine("Page time zone: {0}", pageTimeZone);
+            TestContext.WriteLine("Current local time for time zone:{0}", localTime);
+            TestContext.WriteLine("Time zone base UTC offset: {0}", ti.BaseUtcOffset.ToString(@"\+hhmm"));
+            TestContext.WriteLine("Time zone current UTC offset: {0}", currentUtcOffset);
+            TestContext.WriteLine("Is daylight saving time: {0}", ti.IsDaylightSavingTime(localTime));
+        }
+
         /// <summary>
         /// Added comment #1
         /// </summary>
