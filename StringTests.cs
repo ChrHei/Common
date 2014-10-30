@@ -182,6 +182,58 @@ och då måste jag ju fixa det"
 
         }
 
+        [TestMethod]
+        [TestCategory("Fagerhult")]
+        public void StringSortTest()
+        {
+            string[] data = new string[]
+            {
+                 "2x50/54 9.4 1200 300 23238", 
+                 "4x20/24 9.2 600 600 23230", 
+                 "2x25/28 9.4 1200 300 23232", 
+                 "3x13/14 9.1 600 600 23228", 
+                 "3x25/28 14.3 1200 600 23234", 
+                 "4x13/14 9.2 600 600 23229", 
+                 "4x25/28 14.5 1200 600 23235"
+            };
+
+            TestContext.WriteLine("Unsorted:");
+            foreach (string s in data)
+                TestContext.WriteLine(s);
+
+
+            Array.Sort(data);
+
+            TestContext.WriteLine("\r\nSorted:");
+            foreach (string s in data)
+                TestContext.WriteLine(s);
+        }
+
+
+        [TestMethod]
+        [TestCategory("Tibor")]
+        public void LookupH2WithRegex()
+        {
+            string pattern = "<h2([^>]*)>([^<]+)</h2>";
+            string input = "<h2 style=\"margin-top: 6px;\">Viktigt</h2>";
+
+            Assert.IsTrue(Regex.IsMatch(input, pattern));
+
+            MatchCollection matches = Regex.Matches(input, pattern);
+
+            foreach (Match m in matches)
+            {
+                TestContext.WriteLine("Match: {0}", m.Value);
+                foreach (var x in m.Groups.Cast<Group>().Select((g, i) => new { Index = i, Group = g }))
+                {
+                    TestContext.WriteLine("\tmatch.Groups[{0}]= \"{1}\"", x.Index, x.Group.Value);
+                }
+                string s2 = Regex.Replace(input, pattern, "<h2 id=\"{0}\"$1>$2</h2>");
+                TestContext.WriteLine("\tReplaced string = \"{0}\"", s2);
+
+            }
+                
+        }
 	}
 
     

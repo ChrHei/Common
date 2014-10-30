@@ -151,16 +151,11 @@ namespace CommonTests
         public void DeserializeXmlFiles()
         {
             //string folder = @"d:\temp\Fagerhult\xml\Faro-140519";
-            string folder = @"d:\temp\Fagerhult\xml";
+            string folder = @"d:\temp\Fagerhult\xml\data (temp)";
 
             string[] fileNames = new string[]
             { 
-                 "Sweden_tillbehor-faro20140514162115.xml"
-                 ,"Sweden_faro20140514160621.xml"
-                 ,"Sweden_faro20140514150432.xml"
-                 ,"Sweden_tbhstralkastare20140514150456.xml"
-                 ,"Sweden_lysror20140522161519.xml"
-                 ,"Sweden_allfive20140528112700-3-dokument.xml"
+                "Russia_Ryssland20140909113203.xml"
             };
 
             DeserializeXml(folder, fileNames);

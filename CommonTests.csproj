@@ -172,11 +172,14 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Data\Xml\fagerhult-fpk.cs" />
+    <Compile Include="DefaultValueTests.cs" />
     <Compile Include="FagerhultPIMXmlTest.cs" />
+    <Compile Include="GlobalizationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ParseLogTest.cs" />
     <Compile Include="FagerhultSplitXHtmlTest.cs" />
     <Compile Include="StringTests.cs" />
+    <Compile Include="NullReferenceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
