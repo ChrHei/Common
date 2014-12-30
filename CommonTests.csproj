@@ -180,6 +180,7 @@
     <Compile Include="FagerhultSplitXHtmlTest.cs" />
     <Compile Include="StringTests.cs" />
     <Compile Include="NullReferenceTest.cs" />
+    <Compile Include="WebUtilityTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
