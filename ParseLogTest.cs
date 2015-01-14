@@ -61,6 +61,8 @@ namespace CommonTests
         //
         #endregion
 
+
+        [TestCategory("Bokrondellen")]
         [TestMethod]
         public void BRParseDeweyLog()
         {

@@ -27,6 +27,7 @@ namespace CommonTests
             }
         }
 
+        [TestCategory("Fagerhult")]
         [TestMethod]
         public void FagerhultSplitXHtml()
         {

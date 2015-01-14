@@ -70,7 +70,8 @@ namespace CommonTests
         public void ExtractPartFromXml()
         {
             int startIndex = 0;
-            int noOfElements = 100;
+            int noOfElements = 15000;
+            string ISBNSuffixFilter = "978951"; // finland
 
             string xmlPath = @"D:\Users\chrhei\Documents\Visual Studio 2012\Projects\CommonTests\Data\Xml\art_Onix_BBF_all_products_2014123_161012.xml";
             string targetFolder = @"D:\Users\chrhei\Documents\Visual Studio 2012\Projects\CommonTests\Data\Xml";
@@ -84,8 +85,8 @@ namespace CommonTests
 
             string fileName = string.Format("{0}-{1:D4}-{2:D4}{3}",
                 Path.GetFileNameWithoutExtension(xmlPath),
-                startIndex,
-                noOfElements,
+                startIndex + 1,
+                startIndex + noOfElements,
                 Path.GetExtension(xmlPath));
 
             List<string> fprisList = new List<string>();
@@ -108,18 +109,24 @@ namespace CommonTests
                     {
                         if (reader.Match(1))
                         {
-                            if (startIndex >= skipCount)
+                            if (startIndex <= skipCount)
                             {
                                 StringBuilder innerSb = new StringBuilder();
                                 using (XmlWriter innerWriter = new StringWriterUTF8(innerSb).CreateXmlWriter(new XmlWriterSettings() { Indent = true, OmitXmlDeclaration = true }))
                                 {
                                     innerWriter.WriteNode(reader, true);
                                 }
+
+                                // Create temporary XmlDocument used to navigate content 
                                 XmlDocument doc = new XmlDocument();
+
+                                // load current <artikel> to doc
                                 doc.LoadXml(innerSb.ToString());
+                                // get node for <artikelnummer>
                                 XmlNode node = doc.SelectSingleNode("/artikel/artikelnummer");
 
-                                if (node != null && !string.IsNullOrWhiteSpace(node.InnerText) && node.InnerText.Length > 2 && node.InnerText.Substring(0, 3) == "978")
+                                // if SKU matches ISBNSuffixFilter then write SKU to file
+                                if (node != null && !string.IsNullOrWhiteSpace(node.InnerText) && node.InnerText.Length >= ISBNSuffixFilter.Length && node.InnerText.Substring(0, ISBNSuffixFilter.Length) == ISBNSuffixFilter)
                                 {
                                     writer.WriteNode(doc.DocumentElement.CreateNavigator(), true);
                                     takeCount++;
@@ -128,18 +135,93 @@ namespace CommonTests
                             else
                             {
                                 skipCount++;
+                                StringBuilder innerSb = new StringBuilder();
+                                using (XmlWriter innerWriter = new StringWriterUTF8(innerSb).CreateXmlWriter(new XmlWriterSettings() { Indent = true, OmitXmlDeclaration = true }))
+                                {
+                                    innerWriter.WriteNode(reader, true);
+                                }
+                                reader.ReadUntilMatch();
                             }
                         }
                         else
                         {
-                            reader.ReadUntilMatch();
+                            StringBuilder innerSb = new StringBuilder();
+                            using (XmlWriter innerWriter = new StringWriterUTF8(innerSb).CreateXmlWriter(new XmlWriterSettings() { Indent = true, OmitXmlDeclaration = true }))
+                            {
+                                innerWriter.WriteNode(reader, true);
+                            }
                         }
                     }
                     writer.WriteEndElement();
+                    TestContext.WriteLine("Created file with {0} items", takeCount);
                 }
             }
             //TestContext.WriteLine(sb.ToString());
-            TestContext.WriteLine("No price: {0}", fprisList.Count(f => string.IsNullOrWhiteSpace(f)));
+        }
+
+        [TestCategory("Bokrondellen")]
+        [TestMethod]
+        public void ExtractPartFromXml2()
+        {
+            int startIndex = 0;
+            int noOfElements = 15000;
+            string ISBNSuffixFilter = "978951"; // finland
+
+            int takeCount = 0;
+            int skipCount = 0;
+
+            string xmlPath = @"D:\Users\chrhei\Documents\Visual Studio 2012\Projects\CommonTests\Data\Xml\art_Onix_BBF_all_products_2014123_161012.xml";
+            string targetFolder = @"D:\Users\chrhei\Documents\Visual Studio 2012\Projects\CommonTests\Data\Xml";
+
+            string fileName = string.Format("{0}-{1:D4}-{2:D4}{3}",
+                Path.GetFileNameWithoutExtension(xmlPath),
+                startIndex + 1,
+                startIndex + noOfElements,
+                Path.GetExtension(xmlPath));
+
+            using (XmlReader reader = XmlReader.Create(xmlPath, new XmlReaderSettings() { IgnoreWhitespace = true }))
+            {
+                using (XmlWriter writer = XmlWriter.Create(Path.Combine(targetFolder, fileName), new XmlWriterSettings() { Indent = true }))
+                {
+                    writer.WriteStartElement("artikelregister");
+                    reader.ReadToFollowing("filinformation");
+                    writer.WriteNode(reader, true);
+
+                    while (reader.ReadToFollowing("artikel") && takeCount < noOfElements)
+                    {
+                        StringBuilder sb = new StringBuilder();
+
+                        using (XmlWriter innerWriter = XmlWriter.Create(new StringWriterUTF8(sb), new XmlWriterSettings() { Indent = true }))
+                        {
+                            innerWriter.WriteNode(reader, true);
+                        }
+
+                        XmlDocument doc = new XmlDocument();
+
+                        doc.LoadXml(sb.ToString());
+
+                        XmlNode node = doc.SelectSingleNode("/artikel/artikelnummer");
+
+                        if (node != null && !string.IsNullOrWhiteSpace(node.InnerText) && node.InnerText.Length >= ISBNSuffixFilter.Length && node.InnerText.Substring(0, ISBNSuffixFilter.Length) == ISBNSuffixFilter)
+                        {
+                            if (skipCount >= startIndex)
+                            {
+                                writer.WriteNode(doc.DocumentElement.CreateNavigator(), true);
+                                takeCount++;
+                            }
+                            else
+                            {
+                                skipCount++;
+                            }
+                        }
+
+                    }
+                    
+                    writer.WriteEndElement();
+
+
+                }
+            }
         }
     }
 
@@ -150,7 +232,8 @@ namespace CommonTests
             get { return Encoding.UTF8; }
         }
 
-        public StringWriterUTF8(StringBuilder sb) : base(sb)
+        public StringWriterUTF8(StringBuilder sb)
+            : base(sb)
         {
 
         }
