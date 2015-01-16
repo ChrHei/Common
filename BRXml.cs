@@ -187,33 +187,42 @@ namespace CommonTests
                     reader.ReadToFollowing("filinformation");
                     writer.WriteNode(reader, true);
 
-                    while (reader.ReadToFollowing("artikel") && takeCount < noOfElements)
+                    if (reader.Name != "artikel")
+                        reader.ReadToFollowing("artikel");
+
+
+                    while (!reader.EOF && takeCount < noOfElements)
                     {
-                        StringBuilder sb = new StringBuilder();
-
-                        using (XmlWriter innerWriter = XmlWriter.Create(new StringWriterUTF8(sb), new XmlWriterSettings() { Indent = true }))
+                        if (reader.Name == "artikel")
                         {
-                            innerWriter.WriteNode(reader, true);
-                        }
+                            StringBuilder sb = new StringBuilder();
 
-                        XmlDocument doc = new XmlDocument();
-
-                        doc.LoadXml(sb.ToString());
-
-                        XmlNode node = doc.SelectSingleNode("/artikel/artikelnummer");
-
-                        if (node != null && !string.IsNullOrWhiteSpace(node.InnerText) && node.InnerText.Length >= ISBNSuffixFilter.Length && node.InnerText.Substring(0, ISBNSuffixFilter.Length) == ISBNSuffixFilter)
-                        {
-                            if (skipCount >= startIndex)
+                            using (XmlWriter innerWriter = XmlWriter.Create(new StringWriterUTF8(sb), new XmlWriterSettings() { Indent = true }))
                             {
-                                writer.WriteNode(doc.DocumentElement.CreateNavigator(), true);
-                                takeCount++;
+                                innerWriter.WriteNode(reader, true);
                             }
-                            else
+
+                            XmlDocument doc = new XmlDocument();
+
+                            doc.LoadXml(sb.ToString());
+
+                            XmlNode node = doc.SelectSingleNode("/artikel/artikelnummer");
+
+                            if (node != null && !string.IsNullOrWhiteSpace(node.InnerText) && node.InnerText.Length >= ISBNSuffixFilter.Length && node.InnerText.Substring(0, ISBNSuffixFilter.Length) == ISBNSuffixFilter)
                             {
-                                skipCount++;
+                                if (skipCount >= startIndex)
+                                {
+                                    writer.WriteNode(doc.DocumentElement.CreateNavigator(), true);
+                                    takeCount++;
+                                }
+                                else
+                                {
+                                    skipCount++;
+                                }
                             }
                         }
+                        else
+                            reader.ReadToFollowing("artikel");
 
                     }
                     
