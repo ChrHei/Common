@@ -175,6 +175,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BRAuthenticationServiceTest.cs" />
+    <Compile Include="BRBookReflection.cs" />
     <Compile Include="BRXml.cs" />
     <Compile Include="Data\Model\fagerhult-fpk.cs" />
     <Compile Include="DefaultValueTests.cs" />
