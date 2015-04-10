@@ -163,15 +163,15 @@ namespace CommonTests
         [TestMethod]
         public void ExtractPartFromXml2()
         {
-            int startIndex = 0;
-            int noOfElements = 15000;
+            int startIndex = 400;
+            int noOfElements = 100;
             string ISBNSuffixFilter = "978951"; // finland
 
             int takeCount = 0;
             int skipCount = 0;
 
-            string xmlPath = @"D:\Users\chrhei\Documents\Visual Studio 2012\Projects\CommonTests\Data\Xml\art_Onix_BBF_all_products_2014123_161012.xml";
-            string targetFolder = @"D:\Users\chrhei\Documents\Visual Studio 2012\Projects\CommonTests\Data\Xml";
+            string xmlPath = Path.GetFullPath(@"..\..\Data\Xml\art_Onix_BBF_all_products_2014123_161012.xml");
+            string targetFolder = Path.GetFullPath(@"..\..\Data\Xml");
 
             string fileName = string.Format("{0}-{1:D4}-{2:D4}{3}",
                 Path.GetFileNameWithoutExtension(xmlPath),
@@ -185,7 +185,23 @@ namespace CommonTests
                 {
                     writer.WriteStartElement("artikelregister");
                     reader.ReadToFollowing("filinformation");
-                    writer.WriteNode(reader, true);
+
+                    XmlDocument headerElement = new XmlDocument();
+                    
+                    XmlNode fileInformation = headerElement.ReadNode(reader);
+                    headerElement.AppendChild(fileInformation);
+
+                    XmlNode marketNode = headerElement.SelectSingleNode("/standardmarknad");
+
+                    if (marketNode == null)
+                    {
+                        XmlElement marketElement = headerElement.CreateElement("standardmarknad");
+                        marketElement.InnerText = "FINLAND";
+                        headerElement.DocumentElement.AppendChild(marketElement);
+                    }
+                       
+
+                    writer.WriteNode(headerElement.CreateNavigator(), true);
 
                     if (reader.Name != "artikel")
                         reader.ReadToFollowing("artikel");
@@ -212,6 +228,7 @@ namespace CommonTests
                             {
                                 if (skipCount >= startIndex)
                                 {
+                                    ModifyElement(doc);
                                     writer.WriteNode(doc.DocumentElement.CreateNavigator(), true);
                                     takeCount++;
                                 }
@@ -231,6 +248,32 @@ namespace CommonTests
 
                 }
             }
+        }
+
+        private void ModifyElement(XmlDocument doc)
+        {
+            XmlNode taxNode = doc.SelectSingleNode("/artikel/moms");
+
+            if (taxNode == null)
+            {
+                // add code here to create a new node at the proper location
+            }
+            else if (string.IsNullOrWhiteSpace(taxNode.InnerText) || taxNode.InnerText == "0")
+            {
+                taxNode.InnerText = "10"; // default tax in finland
+            }
+
+            XmlNode statusNode = doc.SelectSingleNode("/artikel/lagerstatus");
+
+            if (statusNode == null)
+            {
+                // add code here to create a new node at the proper location
+            }
+            else if (string.IsNullOrWhiteSpace(statusNode.InnerText))
+            {
+                statusNode.InnerText = "Spärrad";
+            }
+
         }
     }
 
