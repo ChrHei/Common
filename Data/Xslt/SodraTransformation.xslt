@@ -385,6 +385,7 @@
             </Land>
           </xsl:for-each>
         </Itr>
+        
         <Dlg>
           <xsl:for-each select="UtbTyp">
             <UtbTyp>
@@ -433,21 +434,102 @@
 
             <xsl:for-each select="Utdelningsinsats">
               <Utdelningsinsats>
-                <xsl:for-each select="KontoTyp">
-                  <KontoTyp>
+                <xsl:for-each select="Kontotyp">
+                  <Kontotyp>
                     <xsl:value-of select="." />
-                  </KontoTyp>
+                  </Kontotyp>
+                </xsl:for-each>
+                <xsl:for-each select="PerDatum">
+                  <PerDatum>
+                    <xsl:value-of select="." />
+                  </PerDatum>
+                </xsl:for-each>
+                <xsl:for-each select="UtdelningsProcent">
+                  <UtdelningsProcent>
+                    <xsl:value-of select="." />
+                  </UtdelningsProcent>
+                </xsl:for-each>
+                <xsl:for-each select="BerakningsSaldo">
+                  <BerakningsSaldo>
+                    <xsl:value-of select="." />
+                  </BerakningsSaldo>
+                </xsl:for-each>
+                <xsl:for-each select="Belopp">
+                  <Belopp>
+                    <xsl:value-of select="." />
+                  </Belopp>
+                </xsl:for-each>
+                <xsl:for-each select="OverfortLanekonto">
+                  <OverfortLanekonto>
+                    <xsl:value-of select="." />
+                  </OverfortLanekonto>
+                </xsl:for-each>
+                <xsl:for-each select="UtbetalatBank">
+                  <UtbetalatBank>
+                    <xsl:value-of select="." />
+                  </UtbetalatBank>
+                </xsl:for-each>
+                <xsl:for-each select="Forlagsnr">
+                  <Forlagsnr>
+                    <xsl:value-of select="." />
+                  </Forlagsnr>
                 </xsl:for-each>
               </Utdelningsinsats>
             </xsl:for-each>
-
           </Ske>
+
+          <xsl:for-each select="TotSummaOverfortLanekonto">
+            <TotSummaOverfortLanekonto>
+              <xsl:value-of select="." />
+            </TotSummaOverfortLanekonto>
+          </xsl:for-each>
+
+          <xsl:for-each select="TotSummaUtbetalatBank">
+            <TotSummaUtbetalatBank>
+              <xsl:value-of select="." />
+            </TotSummaUtbetalatBank>
+          </xsl:for-each>
+          <Regioner>
+            <Region>
+              <xsl:for-each select="Namn">
+                <Namn>
+                  <xsl:value-of select="." />
+                </Namn>
+              </xsl:for-each>
+              <xsl:for-each select="Adr1">
+                <Adr1>
+                  <xsl:value-of select="." />
+                </Adr1>
+              </xsl:for-each>
+              <xsl:for-each select="PstNum">
+                <PstNum>
+                  <xsl:value-of select="." />
+                </PstNum>
+              </xsl:for-each>
+              <xsl:for-each select="PstAdr">
+                <PstAdr>
+                  <xsl:value-of select="." />
+                </PstAdr>
+              </xsl:for-each>
+            <xsl:for-each select="Epost">
+                <Epost>
+                  <xsl:value-of select="." />
+                </Epost>
+              </xsl:for-each>
+              <xsl:for-each select="Telnr">
+                <Telnr>
+                  <xsl:value-of select="." />
+                </Telnr>
+              </xsl:for-each>
+              <xsl:for-each select="Fax">
+                <Fax>
+                  <xsl:value-of select="." />
+                </Fax>
+              </xsl:for-each>
+            </Region>
+          </Regioner>
         </AviseringUtdelning>
-
       </DocumentData>
-
-
-
     </wsop>
   </xsl:template>
 </xsl:stylesheet>
