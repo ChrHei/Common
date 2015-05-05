@@ -220,7 +220,9 @@
     <Compile Include="Sodra.XsltTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Data\Sodra\utdelningsavisering.xml" />
     <Content Include="Data\Xml\art_Onix_BBF_all_products_2014123_161012.xml" />
+    <Content Include="Data\Xslt\SodraTransformation.xslt" />
     <None Include="Service References\ServiceReference1\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

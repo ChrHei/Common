@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsop document="utdelningsavisering" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Metadata>
+    <User>SODRA\SODRA</User>
+    <Organization>Södra</Organization>
+    <Company>Skog</Company>
+    <Vo />
+    <System>Kapitalhanterings-systemet</System>
+    <DateTime>2015-04-28</DateTime>
+    <DocumentType>2015</DocumentType>
+    <JobId>8577373</JobId>
+    <DocumentId>UDE1362716</DocumentId>
+    <LevId />
+    <Intressentnummer>197701242708</Intressentnummer>
+    <Document>
+      <ItrID>197701242708</ItrID>
+      <Edt>2015-04-28</Edt>
+    </Document>
+  </Metadata>
+  <Parameters>
+    <Language>SE</Language>
+    <Archive>
+      <Archive>yes</Archive>
+      <ArchiveTime>2025-04-28</ArchiveTime>
+    </Archive>
+    <ExtendedOutput>
+      <Extended>yes</Extended>
+      <DaysToSave>30</DaysToSave>
+      <External>yes</External>
+    </ExtendedOutput>
+  </Parameters>
+  <DocumentData>
+    <Hnd>
+      <HndDtm>2015-04-28</HndDtm>
+    </Hnd>
+    <Handl>
+      <UsrNam>Systemkonto</UsrNam>
+      <UsrSgn>Sys</UsrSgn>
+      <UsrTel />
+      <UsrEml />
+      <UsrAvd />
+      <Edt>2015-04-28</Edt>
+    </Handl>
+    <Itr>
+      <ItrID>197701242708</ItrID>
+      <Nam>Martina Svensson</Nam>
+      <ItrKatKod>96</ItrKatKod>
+      <PrlSkt>0</PrlSkt>
+      <IntEdt>1994-01-01</IntEdt>
+      <UtbDirKod>1</UtbDirKod>
+      <InsKtoKod>1</InsKtoKod>
+      <ElkDirKod>0</ElkDirKod>
+      <Adr2>Skogsduvevägen 17</Adr2>
+      <PstNum>43853</PstNum>
+      <PstAdr>HINDÅS</PstAdr>
+    </Itr>
+    <AviseringUtdelning>
+      <Ske>
+        <Typ>2</Typ>
+        <ItrEf>0</ItrEf>
+        <SkeID>436135</SkeID>
+        <Nam>Svensson Carl-Olof m fl</Nam>
+        <VoID>965</VoID>
+        <Adl>1/3</Adl>
+        <RgoID>01</RgoID>
+        <UtdelningInsats>
+          <Kontotyp>ISTI</Kontotyp>
+          <PerDatum>2014-12-31</PerDatum>
+          <UtdelningsProcent>6.00</UtdelningsProcent>
+          <BerakningsSaldo>1733</BerakningsSaldo>
+          <Belopp>104</Belopp>
+          <OverfortLanekonto>104</OverfortLanekonto>
+          <UtbetalatBank>0</UtbetalatBank>
+          <Forlagsnr />
+        </UtdelningInsats>
+        <UtdelningInsats>
+          <Kontotyp>ISTE</Kontotyp>
+          <PerDatum>2014-12-31</PerDatum>
+          <UtdelningsProcent>6.00</UtdelningsProcent>
+          <BerakningsSaldo>1544</BerakningsSaldo>
+          <Belopp>93</Belopp>
+          <OverfortLanekonto>93</OverfortLanekonto>
+          <UtbetalatBank>0</UtbetalatBank>
+          <Forlagsnr />
+        </UtdelningInsats>
+        <SummaOverfortEF>197</SummaOverfortEF>
+        <Emission>
+          <EmissionsProcent>5.00</EmissionsProcent>
+          <Belopp>87</Belopp>
+        </Emission>
+      </Ske>
+      <TotSummaOverfortLanekonto>0</TotSummaOverfortLanekonto>
+      <TotSummaUtbetalatBank>0</TotSummaUtbetalatBank>
+      <Regioner>
+        <Region>
+          <Namn>Syd</Namn>
+          <Adr1>Södra Cell Mörrum</Adr1>
+          <PstNum>375 86</PstNum>
+          <PstAdr>Mörrum</PstAdr>
+          <Epost />
+          <Telnr>0454-55570</Telnr>
+          <Fax />
+        </Region>
+      </Regioner>
+    </AviseringUtdelning>
+  </DocumentData>
+</wsop>
