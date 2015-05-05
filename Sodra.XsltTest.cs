@@ -2,6 +2,7 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
 
 namespace CommonTests
 {
@@ -62,9 +63,23 @@ namespace CommonTests
 		[TestCategory("Södra")]
 		public void Transform()
 		{
-			//
-			// TODO: Add test logic here
-			//
+            string dataFolder = @"..\..\Data\Sodra";
+            string xsltFolder  = @"..\..\Data\Xslt";
+
+            string dataFileName = Path.Combine(dataFolder, "utdelningsavisering.xml");
+            string outputFileName = Path.Combine(dataFolder, "utdelningsavisering_output.xml");
+            string xsltFileName = Path.Combine(xsltFolder, "XsltTest.xslt");
+
+            FileInfo dataFile = new FileInfo(dataFileName);
+            FileInfo xsltFile = new FileInfo(xsltFileName);
+            FileInfo outputFile = new FileInfo(outputFileName);
+
+
+            TestContext.WriteLine("Input file: {0} {1}", dataFile.Exists, dataFile.FullName);
+            TestContext.WriteLine("Xslt file: {0} {1}", xsltFile.Exists, xsltFile.FullName);
+            TestContext.WriteLine("Output file: {0} {1}", outputFile.Exists, outputFile.FullName);
+
+            XsltHelper.TransformXslt(xsltFile.FullName, dataFile.FullName, outputFile.FullName);
 		}
 	}
 }
