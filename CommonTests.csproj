@@ -199,6 +199,7 @@
     <Compile Include="NullReferenceTest.cs" />
     <Compile Include="TagCloseTest.cs" />
     <Compile Include="WebUtilityTest.cs" />
+    <Compile Include="XsltHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -216,6 +217,7 @@
     <None Include="Service References\ServiceReference1\Authenticate2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Compile Include="Sodra.XsltTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Xml\art_Onix_BBF_all_products_2014123_161012.xml" />
