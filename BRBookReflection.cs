@@ -74,7 +74,7 @@ namespace CommonTests
 
             var properties = type.GetProperties();
 
-            foreach (var p in properties)
+            foreach (var p in properties.OrderBy(p => p.Name))
             {
                 if (p.CustomAttributes.Any(a => a.AttributeType.Equals(lockTypeAttribute)))
                 {
