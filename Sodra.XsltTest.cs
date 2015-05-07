@@ -63,7 +63,7 @@ namespace CommonTests
 		[TestCategory("Södra")]
 		public void Transform()
 		{
-            string dataFolder = @"..\..\Data\Sodra";
+            string dataFolder = @"..\..\Data\Xml\Sodra";
             string xsltFolder  = @"..\..\Data\Xslt";
 
             string dataFileName = Path.Combine(dataFolder, "utdelningsavisering.xml");
