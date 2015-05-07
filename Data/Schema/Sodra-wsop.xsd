@@ -1,0 +1,589 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- Created with Liquid XML Studio 1.0.8.0 (http://www.liquid-technologies.com) -->
+<xs:schema xmlns:b="http://schemas.microsoft.com/BizTalk/2003" xmlns="Sodra.Skog.WSOP.UtdelAvis" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="Sodra.Skog.WSOP.UtdelAvis" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="wsop">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Metadata">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="User" type="xs:string" />
+              <xs:element name="Organization" type="xs:string" />
+              <xs:element name="Company" type="xs:string" />
+              <xs:element name="Vo" type="xs:string" />
+              <xs:element name="System" type="xs:string" />
+              <xs:element name="DateTime" type="xs:string" />
+              <xs:element name="DocumentType" type="xs:string" />
+              <xs:element name="JobId" type="xs:string" />
+              <xs:element name="DocumentId" type="xs:string" />
+              <xs:element name="LevId" type="xs:string" />
+              <xs:element name="Intressentnummer" type="xs:string" />
+              <xs:element name="Document">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" name="ItrID">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:maxLength value="12" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="KtoID">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:maxLength value="40" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="Edt">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:date" />
+                      </xs:simpleType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Parameters">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Language" type="xs:string" />
+              <xs:element minOccurs="0" name="Printer">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="PrinterName" type="xs:string" />
+                    <xs:element name="PrinterType" type="xs:string" />
+                    <xs:element name="Tray" type="xs:string" />
+                    <xs:element name="OutputBin" type="xs:string" />
+                    <xs:element name="PrintCopies" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <!--<xs:element minOccurs="0" name="Fax">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="FaxNo" type="xs:string" />
+                    <xs:element name="FaxCopies" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>-->
+              <xs:element minOccurs="0" name="Archive">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Archive" type="xs:string" />
+                    <xs:element name="ArchiveTime" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="File">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="FilePath" type="xs:string" />
+                    <xs:element name="FileType" type="xs:string" />
+                    <xs:element name="FileName" type="xs:string" />
+                    <xs:element name="Url" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="Mail">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="From" type="xs:string" />
+                    <xs:element name="To" type="xs:string" />
+                    <xs:element name="Cc" type="xs:string" />
+                    <xs:element name="Bcc" type="xs:string" />
+                    <xs:element name="Subject" type="xs:string" />
+                    <xs:element name="Body" type="xs:string" />
+                    <xs:element name="AttachmentName" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="EdiMail">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="From" type="xs:string" />
+                    <xs:element name="To" type="xs:string" />
+                    <xs:element name="Cc" type="xs:string" />
+                    <xs:element name="Bcc" type="xs:string" />
+                    <xs:element name="Subject" type="xs:string" />
+                    <xs:element name="DataOutput" type="xs:string" />
+                    <xs:element name="AttachmentName" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="External">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="External" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="ExtendedOutput">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Extended" />
+                    <xs:element name="DaysToSave" />
+                    <xs:element name="External" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" name="ExternalAttachments">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="ExternalAttachment">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="type" type="xs:string" use="required" />
+                      <xs:attribute name="path" type="xs:string" use="required" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DocumentData">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Hnd">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="HndDtm" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Handl">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="UsrNam">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:maxLength value="50" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="UsrSgn">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:maxLength value="10" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="UsrTel">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:maxLength value="40" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="UsrEml">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:maxLength value="80" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="UsrAvd">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:maxLength value="32" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="Edt">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:date" />
+                      </xs:simpleType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="Itr">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="ItrID">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:maxLength value="12" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="Nam">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:maxLength value="25" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="ItrKatKod">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:maxLength value="2" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="PrlSkt" type="xs:boolean" />
+                    <xs:element minOccurs="0" name="IntEdt">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:date" />
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="UpsEdt">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:date" />
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="UtrEdt">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:date" />
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="UtbDirKod" type="xs:boolean" />
+                    <xs:element name="InsKtoKod">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:maxLength value="1" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="ElkDirKod">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:maxLength value="1" />
+                          <xs:minLength value="1" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Adr1">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:maxLength value="25" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Adr2">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:maxLength value="25" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="PstNum">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:maxLength value="6" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="PstAdr">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:maxLength value="25" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="Land" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="Dlg">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" name="UtbTyp">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:maxLength value="2" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="AviseringUtdelning">
+                <xs:annotation>
+                  <xs:documentation>ï¿½rsbeskedsdata</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="Ske">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Typ" />
+                          <xs:element minOccurs="0" maxOccurs="1" name="ItrEf" type="xs:boolean" />
+                          <xs:element name="SkeID">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="10" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="Nam">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="25" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="VoID">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="3" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="Adl">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="12" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="RgoID" type="xs:string" />
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="Efterlikvid">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Intervall" type="xs:string" />
+                                <xs:element name="Sortiment" type="xs:string" />
+                                <xs:element name="Leveransvarde" type="xs:integer" />
+                                <xs:element name="Procent" type="xs:decimal" />
+                                <xs:element name="Belopp" type="xs:decimal" />
+                                <xs:element name="Moms" type="xs:decimal" />
+                                <xs:element name="Apris" type="xs:decimal" />
+                                <xs:element name="Volym" type="xs:decimal" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="EfterlikvidPerDelagare">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="ItrID" type="xs:string" />
+                                <xs:element name="Nam" type="xs:string" />
+                                <xs:element name="Belopp" type="xs:decimal" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="EfterlikvidUtgaendeMoms">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="ItrID" type="xs:string" />
+                                <xs:element name="Nam" type="xs:string" />
+                                <xs:element name="Belopp" type="xs:decimal" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="UtdelningInsats">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Kontotyp" type="xs:string" />
+                                <xs:element name="PerDatum" type="xs:string" />
+                                <xs:element name="UtdelningsProcent" type="xs:decimal" />
+                                <xs:element name="BerakningsSaldo" type="xs:integer" />
+                                <xs:element name="Belopp" type="xs:integer" />
+                                <xs:element name="OverfortLanekonto" type="xs:integer" />
+                                <xs:element name="UtbetalatBank" type="xs:integer" />
+                                <xs:element name="Forlagsnr" type="xs:string" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="UtdelningInsatsInbetaltPerDelagare">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="ItrID" type="xs:string" />
+                                <xs:element name="Nam" type="xs:string" />
+                                <xs:element name="Belopp" type="xs:decimal" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="UtdelningInsatsEmissionPerDelagare">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="ItrID" type="xs:string" />
+                                <xs:element name="Nam" type="xs:string" />
+                                <xs:element name="Belopp" type="xs:decimal" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="Kvittning">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Typ" type="xs:string" />
+                                <xs:element name="RefNr" type="xs:string" />
+                                <xs:element name="Belopp" type="xs:integer" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="SummaOverfortLanekonto">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="ItrID" type="xs:string" />
+                                <xs:element name="Nam" type="xs:string" />
+                                <xs:element name="Belopp" type="xs:decimal" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="SummaUtbetalatBank">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="ItrID" type="xs:string" />
+                                <xs:element name="Nam" type="xs:string" />
+                                <xs:element name="Belopp" type="xs:decimal" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element minOccurs="0" name="SummaOverfortEF" type="xs:integer" />
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="Emission">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="EmissionsProcent" type="xs:decimal" />
+                                <xs:element name="Belopp" type="xs:integer" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="EmissionPerDelagare">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="ItrID" type="xs:string" />
+                                <xs:element name="Nam" type="xs:string" />
+                                <xs:element name="Belopp" type="xs:decimal" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="UtdelningForlagsInsats">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Kontotyp" type="xs:string" />
+                          <xs:element name="PerDatum" type="xs:string" />
+                          <xs:element name="UtdelningsProcent" type="xs:decimal" />
+                          <xs:element name="BerakningsSaldo" type="xs:integer" />
+                          <xs:element name="Belopp" type="xs:integer" />
+                          <xs:element name="UtbetalatBank" type="xs:integer" />
+                          <xs:element minOccurs="0" name="Forlagsnr" type="xs:string" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="TotSummaOverfortLanekonto" type="xs:integer" />
+                    <xs:element name="TotSummaUtbetalatBank" type="xs:integer" />
+                    <xs:element name="Regioner">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="Region">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Namn">
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:maxLength value="64" />
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="Adr1">
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:maxLength value="255" />
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="Adr2">
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:maxLength value="255" />
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="PstNum">
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:maxLength value="6" />
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="PstAdr">
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:maxLength value="25" />
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="Epost">
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:maxLength value="80" />
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="Telnr">
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:maxLength value="40" />
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="Fax">
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:maxLength value="40" />
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="KapRta">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="KapRtaKtp">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="KtpID">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="4" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="KtpTxt">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="50" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="RtaUplBlp">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:decimal" />
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="Sld">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:decimal" />
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="document" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

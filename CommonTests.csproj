@@ -206,6 +206,9 @@
     <None Include="Data\Schema\Fagerhult-fpk.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Data\Schema\Sodra-wsop.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Service References\ServiceReference1\Authenticate.wsdl" />
     <None Include="Service References\ServiceReference1\Authenticate.xsd">
@@ -224,6 +227,9 @@
     <Content Include="Data\Xml\art_Onix_BBF_all_products_2014123_161012.xml" />
     <Content Include="Data\Xslt\SodraTransformation.xslt" />
     <Content Include="Data\Xslt\XsltTest.xslt" />
+    <Content Include="Data\Xslt\XsltTest2.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Service References\ServiceReference1\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

@@ -1,9 +1,9 @@
 ﻿<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs">
   <xsl:output method="xml" encoding="utf-8" indent="yes"/>
-  <xsl:template match="/wsop">
+  <xsl:template match="@* | node()">
     <wsop>
       <Metadata>
-        <xsl:for-each select="User">
+        <xsl:for-each select="//wsop/Metadata/User">
           <User>
             <xsl:value-of select="."/>
           </User>
