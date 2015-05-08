@@ -223,8 +223,9 @@
     <Compile Include="Sodra.XsltTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Data\Xml\Bokrondellen\art_Onix_BBF_all_products_2014123_161012_150507_1327.xml" />
     <Content Include="Data\Xml\Sodra\utdelningsavisering.xml" />
-    <Content Include="Data\Xml\art_Onix_BBF_all_products_2014123_161012.xml" />
+    <Content Include="Data\Xml\Bokrondellen\art_Onix_BBF_all_products_2014123_161012.xml" />
     <Content Include="Data\Xslt\SodraTransformation.xslt" />
     <Content Include="Data\Xslt\XsltTest.xslt" />
     <Content Include="Data\Xslt\XsltTest2.xslt">
@@ -250,7 +251,6 @@
     <WCFMetadataStorage Include="Service References\ServiceReference1\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\Xml\Bokrondellen\" />
     <Folder Include="Service\" />
   </ItemGroup>
   <Choose>
