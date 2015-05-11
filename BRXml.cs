@@ -69,8 +69,8 @@ namespace CommonTests
         public void ExtractPartFromXml()
         {
             int startIndex = 0;
-            int noOfElements = 100;
-            int noOfFiles = 5;
+            int noOfElements = 1000;
+            int noOfFiles = 1;
             string ISBNSuffixFilter = "978951"; // finland
 
             string xmlPath = Path.GetFullPath(@"..\..\Data\Xml\Bokrondellen\art_Onix_BBF_all_products_2014123_161012_150507_1327.xml");
@@ -134,7 +134,7 @@ namespace CommonTests
 
         }
 
-        public void ExtractPartFromXml(string inputFileName, string isbnSuffix, int startIndex, int count)
+        private void ExtractPartFromXml(string inputFileName, string isbnSuffix, int startIndex, int count)
         {
             //int startIndex = 400;
             //int noOfElements = 100;
