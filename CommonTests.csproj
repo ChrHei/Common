@@ -321,6 +321,7 @@
   <ItemGroup>
     <Compile Include="BRAuthenticationServiceTest.cs" />
     <Compile Include="BRBookReflection.cs" />
+    <Compile Include="BRSqlToXmlTest.cs" />
     <Compile Include="BRXml.cs" />
     <Compile Include="Data\Model\fagerhult-fpk.cs" />
     <Compile Include="DefaultValueTests.cs" />
@@ -330,7 +331,11 @@
     <Compile Include="EPiServer\NullTypeScanner.cs" />
     <Compile Include="FagerhultPIMXmlTest.cs" />
     <Compile Include="GlobalizationTests.cs" />
+    <Compile Include="ImplicitConversionTest.cs" />
     <Compile Include="IO\StringWriterUTF8.cs" />
+    <Compile Include="IPTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="LinqTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ParseLogTest.cs" />
@@ -340,11 +345,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="SqlToXmlTest.cs" />
     <Compile Include="StringTests.cs" />
     <Compile Include="NullReferenceTest.cs" />
     <Compile Include="TagCloseTest.cs" />
+    <Compile Include="NetworkInfoTests.cs" />
+    <Compile Include="UriTests.cs" />
     <Compile Include="WebUtilityTest.cs" />
+    <Compile Include="XmlValidator.cs" />
     <Compile Include="XsltHelper.cs" />
   </ItemGroup>
   <ItemGroup>
