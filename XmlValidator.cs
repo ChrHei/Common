@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using System.Xml.Schema;
 using System.Xml;
+using System.Net;
 
 namespace CommonTests
 {
@@ -69,7 +70,7 @@ namespace CommonTests
             // TODO: Add test logic here
             //
 
-            string filePath = @" d:\temp\Bokrondellen\xml\art_Onix-messages-test-staging-20150602-all-fixed-measurements\output\art_Onix-messages-test-staging-20150602-all-fixed-measurements.xml";
+            string filePath = @"d:\websites\Bokrondellen 8.1\Data\_testfiler\Artikel\IN\art_D104_20150916_140711_D104_ONIX_2015-09-07T232338_extract_chrhei.xml";
             string schemaPath = @"d:\websites\Bokrondellen\Bokrondellen.Common\Classes\Schema\book-import.xsd";
 
             using (StreamReader reader = new StreamReader(filePath, Encoding.UTF8))
@@ -182,6 +183,47 @@ namespace CommonTests
             }
 
 
+        }
+
+        [TestMethod]
+        [TestCategory("Bokrondellen")]
+        public void ValidateBookXml()
+        {
+            string fileName = @"d:\Websites\Bokrondellen 8.1\Data\_testfiler\Artikel\OUT\e_artdag_SVERIGE_20150916_033.xml";
+            XmlSchema schema = XmlSchema.Read(WebRequest.Create("http://sv.bokinfo.storfamiljen.se/Schema/book.xsd").GetResponse().GetResponseStream(),
+                delegate (object o, ValidationEventArgs args)
+                {
+                    TestContext.WriteLine(args.Message);
+                });
+
+            XmlReaderSettings settings = new XmlReaderSettings()
+            {
+                ValidationType = ValidationType.Schema
+            };
+
+            int errorCount = 0;
+            settings.ValidationEventHandler += delegate(object sender, ValidationEventArgs args)
+                {
+                    TestContext.WriteLine(args.Message);
+                    errorCount++;
+                };
+
+            settings.Schemas.Add(schema);
+
+            using (StreamReader streamReader = new StreamReader(fileName))
+            {
+                using (XmlReader xmlReader = XmlReader.Create(streamReader, settings))
+                {
+                    try
+                    {
+                        while (xmlReader.Read()) { }
+                    }
+                    finally { }
+                }
+            }
+
+            if (errorCount == 0)
+                TestContext.WriteLine("File validated successfully!");
         }
     }
 }

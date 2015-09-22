@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Globalization;
+using Mediachase.Commerce;
+using EPiServer.ServiceLocation;
 
 namespace CommonTests
 {
@@ -72,5 +74,14 @@ namespace CommonTests
                 TestContext.WriteLine("{0} {1}", ci.ThreeLetterISOLanguageName, ci.DisplayName);
             }
         }
+
+        [TestCategory("Bokrondellen")]
+        [TestMethod]
+        public void GetCurrentLanguageName()
+        {
+            string lang = CultureInfo.CurrentCulture.Name;
+
+        }
+
     }
 }

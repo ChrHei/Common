@@ -63,35 +63,35 @@ namespace CommonTests
         [TestMethod]
         public void TestIpRanges()
         {
-            //
-            // TODO: Add test logic here
-            //
+
+
 
             Assert.IsTrue(IsIpInRange("192.168.0.244", "192.168.0.0/24"));
             Assert.IsFalse(IsIpInRange("192.168.1.244", "192.168.0.0/24"));
             Assert.IsTrue(IsIpInRange("192.168.0.33", "192.168.0.32/27"));
             Assert.IsFalse(IsIpInRange("192.168.0.33", "192.168.0.64/27"));
+
+        
             
-            Assert.IsTrue(IsIpInRange("192.168.0.33", "192.168.0.33/32"));
-            
+        
+        }
 
-            //uint ipAddress = ParseIPAddress("192.168.0.24");
-            //uint mask = ~(0xFFFFFFFF >> 24);
+        [TestMethod]
+        [TestCategory("Taxi Stockholm")]
+        public void TestBNet()
+        {
+            string network1 = "10.100.0.0/16";
+            string network2 = "10.200.0.0/16";
 
-            //uint network = ipAddress & mask;
-
-            //TestContext.WriteLine("Is little endian: {0}", BitConverter.IsLittleEndian);
-
-            //byte[] networkBytes = BitConverter.GetBytes(network);
-
-            //if (BitConverter.IsLittleEndian)
-            //    networkBytes = networkBytes.OfType<byte>().Reverse().ToArray();
-
-            //TestContext.WriteLine("IP: {0}", Convert.ToString(ipAddress, 2));
-            //TestContext.WriteLine("Mask: {0}", Convert.ToString(mask, 2));
-            //TestContext.WriteLine("Network: {0}", Convert.ToString(mask & ipAddress, 2));
-
-            //TestContext.WriteLine("Network address: {0}", string.Join(".", networkBytes.OfType<byte>().Select(b => b.ToString())));
+            for(int i = 1; i < 255; i++)
+            {
+                for(int j = 1; j < 255; j++)
+                {
+                    string address = string.Format("10.100.{0}.{1}", i, j);
+                    Assert.IsTrue(IsIpInRange(address, network1));
+                    Assert.IsFalse(IsIpInRange(address, network2));
+                }
+            }
         }
 
         [TestMethod]
@@ -99,7 +99,7 @@ namespace CommonTests
         {
             uint roof = 0xFFFFFFFF;
 
-            for (int bits = 24; bits < 31; bits++ )
+            for (int bits = 24; bits < 31; bits++)
             {
                 uint result = ~(roof >> bits);
                 TestContext.WriteLine("{0} -> {1:x} -> {2}", bits, result, Convert.ToString(result, 2).PadLeft(32, '0'));
@@ -110,10 +110,12 @@ namespace CommonTests
         public bool IsIpInRange(string ipAddress, string networkAddressAndCidr)
         {
             IPAddress address = IPAddress.Parse(ipAddress);
-            IPAddress network = IPAddress.Parse(networkAddressAndCidr.Substring(0, networkAddressAndCidr.IndexOf("/")));
-            
-            int bits = int.Parse(networkAddressAndCidr.Substring(networkAddressAndCidr.IndexOf("/") + 1, networkAddressAndCidr.Length - networkAddressAndCidr.IndexOf("/") - 1));
 
+            string[] networkChunks = networkAddressAndCidr.Split('/');
+
+            IPAddress network = IPAddress.Parse(networkChunks[0]);
+
+            int bits = int.Parse(networkChunks[1]);
 
             uint addressNumber = BitConverter.ToUInt32(address.GetAddressBytes(), 0);
             uint networkNumber = BitConverter.ToUInt32(network.GetAddressBytes(), 0);
@@ -127,9 +129,7 @@ namespace CommonTests
                 maskNumber = BitConverter.ToUInt32(maskBytes, 0);
             }
 
-            
-
-            return (addressNumber & (uint)maskNumber) == networkNumber;
+            return (addressNumber & maskNumber) == networkNumber;
         }
 
         public uint ParseIPAddress(string ipAddress)
@@ -146,6 +146,6 @@ namespace CommonTests
 
             return part1 + part2 + part3 + part4;
 
-         }
+        }
     }
 }

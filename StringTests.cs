@@ -274,7 +274,7 @@ antologiredaktor;Eskilsson, Erik";
         [TestCategory("Bokrondellen")]
         public void ParseLink()
         {
-            string[] data = new[] { "http://", "http://www.dn.se", "http://dn.se/", "http://dn" };
+            string[] data = new[] { "http://", "http://www.dn.se", "http://dn.se/", "http://dn", "http://www.consid.se/images/image.jpg" };
             Regex re = new Regex(@"^http://\w+(?=\.)");
 
             foreach (string s in data)
